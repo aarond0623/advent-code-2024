@@ -17,7 +17,7 @@ This word search allows words to be horizontal, vertical, diagonal, written back
     .A..A.
     XMAS.S
     .X....
-    
+
 
 The actual word search will be full of letters instead. For example:
 
@@ -31,7 +31,7 @@ The actual word search will be full of letters instead. For example:
     SAXAMASAAA
     MAMMMXMMMM
     MXMXAXMASX
-    
+
 
 In this word search, `XMAS` occurs a total of _`18`_ times; here's the same word search again, but where letters not involved in any `XMAS` have been replaced with `.`:
 
@@ -45,6 +45,37 @@ In this word search, `XMAS` occurs a total of _`18`_ times; here's the same word
     .A.A.A.A.A
     ..M.M.M.MM
     .X.X.XMASX
-    
+
 
 Take a look at the little Elf's word search. _How many times does `XMAS` appear?_
+
+### Part Two
+
+The Elf looks quizzically at you. Did you misunderstand the assignment?
+
+Looking for the instructions, you flip over the word search to find that this isn't actually an _`XMAS`_ puzzle; it's an <span title="This part originally involved searching for something else, but this joke was too dumb to pass up."><code><em>X-MAS</em></code></span> puzzle in which you're supposed to find two `MAS` in the shape of an `X`. One way to achieve that is like this:
+
+    M.S
+    .A.
+    M.S
+
+
+Irrelevant characters have again been replaced with `.` in the above diagram. Within the `X`, each `MAS` can be written forwards or backwards.
+
+Here's the same example from before, but this time all of the `X-MAS`es have been kept instead:
+
+    .M.S......
+    ..A..MSMS.
+    .M.S.MAA..
+    ..A.ASMSM.
+    .M.S.M....
+    ..........
+    S.S.S.S.S.
+    .A.A.A.A..
+    M.M.M.M.M.
+    ..........
+
+
+In this example, an `X-MAS` appears _`9`_ times.
+
+Flip the word search from the instructions back over to the word search side and try again. _How many times does an `X-MAS` appear?_
