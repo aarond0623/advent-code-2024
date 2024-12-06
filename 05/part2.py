@@ -64,12 +64,17 @@ def main(input_string: str) -> int:
     total = 0
 
     for pages in pages_list:
+        flag = False
         relevant_rules = [x for x in rules if x[0] in pages and x[1] in pages]
         for rule in relevant_rules:
             if pages.index(rule[0]) > pages.index(rule[1]):
-                page_orders = order_rules(relevant_rules)
-                pages.sort(key=lambda x:page_orders.get(x, 0))
-                total += pages[len(pages) // 2]
+                flag = True
+                break
+
+        if flag:
+            page_orders = order_rules(relevant_rules)
+            sorted_pages = sorted(pages, key=lambda x:page_orders.get(x, 0))
+            total += sorted_pages[len(pages) // 2]
 
     return total
 
