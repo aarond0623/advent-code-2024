@@ -21,7 +21,7 @@ def parse(input_string: str) -> Iterator[tuple[int, list[int]]]:
 
 def is_valid(n: int, to_test: list[int]) -> bool:
     """A recursive function to test if a list of integers can equate to n using
-    either multiplication or division. For this calculation, the order of
+    either multiplication or addition. For this calculation, the order of
     operations is ignored and calculated left to right.
 
     >>> is_valid(190, [10, 19])
