@@ -50,10 +50,14 @@ def is_valid(n: int, to_test: list[int]) -> bool:
             return True
         return False
 
-    result = False
+    if n < 0:
+        return False
+
+    tests = []
     if n % to_test[-1] == 0:
-        result = is_valid(n // to_test[-1], to_test[:-1])
-    return result or is_valid(n - to_test[-1], to_test[:-1])
+        tests.append((n // to_test[-1], to_test[:-1]))
+    tests.append((n - to_test[-1], to_test[:-1]))
+    return any(is_valid(*x) for x in tests)
 
 
 def main(input_string: str) -> int:
