@@ -20,7 +20,7 @@ class Computer:
 
     def dv(self, op: int):
         """Performs the division operation used by adv, bdv, and cdv"""
-        return self.regA // 2 ** self.combo(op)
+        return self.regA >> self.combo(op)
 
     def adv(self, op: int):
         """Sets register A to A / 2^combo(op)."""
@@ -32,7 +32,7 @@ class Computer:
 
     def bst(self, op: int):
         """Sets register B to combo(op) mod 8."""
-        self.regB = self.combo(op) % 8
+        self.regB = self.combo(op) & 7
 
     def jnz(self, op: int):
         """Jumps the instruction pointer to op if A != 0."""
@@ -47,7 +47,7 @@ class Computer:
 
     def out(self, op: int):
         """Prints combo(op) mod 8."""
-        self.output.append(self.combo(op) % 8)
+        self.output.append(self.combo(op) & 7)
 
     def bdv(self, op: int):
         """Sets register B to A / 2^combo(op)."""
