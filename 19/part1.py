@@ -1,6 +1,10 @@
 """Day 19, Part 1: Linen Layout"""
 
 from sys import stdin
+from functools import cache
+
+PATTERNS: list[str] = []
+MAXLEN = 0
 
 
 def parse(input_string: str) -> tuple[list[str], list[str]]:
@@ -11,14 +15,14 @@ def parse(input_string: str) -> tuple[list[str], list[str]]:
     return patterns, designs
 
 
-def possible(patterns: list[str], design: str) -> bool:
+@cache
+def possible(design: str) -> bool:
     """Determins if a design is possible to make out of the provided patterns.
     """
     if design == "":
         return True
-    maxlen = max(map(len, patterns))
-    for i in range(min(len(design), maxlen) + 1):
-        if design[:i] in patterns and possible(patterns, design[i:]):
+    for i in range(min(len(design), MAXLEN) + 1):
+        if design[:i] in PATTERNS and possible(design[i:]):
             return True
     return False
 
@@ -38,19 +42,23 @@ def tests():
     bbrgwb
     '''.replace('    ','')
 
-    patterns, designs = parse(input_string)
-    assert patterns == ['r', 'wr', 'b', 'g', 'bwu', 'rb', 'gb', 'br']
+    global PATTERNS, MAXLEN
+    PATTERNS, designs = parse(input_string)
+    assert PATTERNS == ['r', 'wr', 'b', 'g', 'bwu', 'rb', 'gb', 'br']
     assert designs == ['brwrr', 'bggr', 'gbbr', 'rrbgbr',
                        'ubwu', 'bwurrg', 'brgr', 'bbrgwb']
 
-    check = [possible(patterns, x) for x in designs]
+    MAXLEN = max(map(len, PATTERNS))
+    check = [possible(x) for x in designs]
     assert check == [True, True, True, True, False, True, True, False]
 
 
 def main(input_string: str) -> int:
     """Finds how many patterns are possible."""
-    patterns, designs = parse(input_string)
-    return sum(1 if possible(patterns, x) else 0 for x in designs)
+    global PATTERNS, MAXLEN
+    PATTERNS, designs = parse(input_string)
+    MAXLEN = max(map(len, PATTERNS))
+    return sum(1 if possible(x) else 0 for x in designs)
 
 
 if __name__ == '__main__':
